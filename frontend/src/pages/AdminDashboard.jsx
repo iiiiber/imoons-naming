@@ -24,7 +24,7 @@ export default function AdminDashboard() {
   useEffect(() => { load() }, [])
 
   // 计算最近30天最大计数（用于趋势图高度）
-  const maxCount = stats ? Math.max(1, ...stats.trend.flatMap(t => [t.records, t.users])) : 1
+  const maxCount = stats?.trend ? Math.max(1, ...stats.trend.flatMap(t => [t.records, t.users])) : 1
 
   return (
     <div>
