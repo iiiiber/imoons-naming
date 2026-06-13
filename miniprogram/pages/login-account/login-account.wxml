@@ -1,0 +1,38 @@
+<view class="login-page">
+  <view class="login-header">
+    <view class="login-title">账号登录</view>
+    <view class="login-subtitle text-muted">登录后享受完整起名服务</view>
+  </view>
+
+  <view class="card">
+    <view class="form-item">
+      <view class="form-label">账号</view>
+      <input
+        class="form-input"
+        placeholder="请输入用户名"
+        value="{{form.username}}"
+        data-field="username"
+        bindinput="onInput"
+      />
+    </view>
+    <view class="form-item">
+      <view class="form-label">密码</view>
+      <input
+        class="form-input"
+        password
+        placeholder="请输入密码"
+        value="{{form.password}}"
+        data-field="password"
+        bindinput="onInput"
+      />
+    </view>
+    <button class="btn btn-primary btn-block" bindtap="onSubmit" disabled="{{submitting}}">
+      {{submitting ? '登录中...' : '登录'}}
+    </button>
+  </view>
+
+  <view class="text-center mt-3">
+    <text class="text-muted text-sm">没有账号？</text>
+    <text class="text-primary text-sm" bindtap="goCardLogin">使用卡密登录</text>
+  </view>
+</view>

@@ -1,0 +1,88 @@
+<wxs module="util">
+function parseNames(names) {
+  if (!names) return []
+  if (typeof names === 'string') {
+    try { names = JSON.parse(names) } catch (e) { return [] }
+  }
+  if (!Array.isArray(names)) return []
+  return names.slice(0, 3)
+}
+
+function nameStr(n) {
+  if (!n) return ''
+  if (typeof n === 'string') return n
+  return n.name || ''
+}
+
+module.exports = { parseNames: parseNames, nameStr: nameStr }
+</wxs>
+
+<view class="records-page">
+  <!-- 筛选条 -->
+  <view class="filter-bar">
+    <view class="filter-row">
+      <input
+        class="filter-input"
+        placeholder="搜索姓氏/名字"
+        value="{{filters.keyword}}"
+        bindinput="onSearchInput"
+        bindconfirm="onSearchConfirm"
+      />
+      <view class="filter-date">
+        <picker mode="date" value="{{filters.date}}" bindchange="onDateChange">
+          <view class="filter-date-text">{{filters.date || '日期'}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="filter-row">
+      <view
+        class="filter-chip {{filters.gender === 'boy' ? 'chip-active-blue' : ''}}"
+        data-gender="boy"
+        bindtap="onGenderFilter"
+      >♂ 男</view>
+      <view
+        class="filter-chip {{filters.gender === 'girl' ? 'chip-active-pink' : ''}}"
+        data-gender="girl"
+        bindtap="onGenderFilter"
+      >♀ 女</view>
+      <view class="filter-spacer"></view>
+      <text class="text-muted text-sm">共 {{total}} 条</text>
+    </view>
+  </view>
+
+  <!-- 列表 -->
+  <view wx:if="{{loading && list.length === 0}}" class="empty text-muted">加载中...</view>
+  <view wx:elif="{{list.length === 0}}" class="empty">
+    <text class="empty-icon">📋</text>
+    <text class="text-muted">暂无记录</text>
+  </view>
+  <view wx:else class="record-list">
+    <view wx:for="{{list}}" wx:key="id" class="record-card">
+      <view class="record-header">
+        <text class="record-title">
+          姓 {{item.surname}}
+          <text class="text-muted text-sm ml-2">{{item.gender === 'boy' ? '♂' : '♀'}}</text>
+        </text>
+        <text class="text-muted text-xs">{{item.created_at || item.createdAt}}</text>
+      </view>
+
+      <view class="record-names">
+        <view
+          wx:for="{{util.parseNames(item.names)}}"
+          wx:for-item="n"
+          wx:key="*this"
+          class="name-chip"
+        >{{util.nameStr(n)}}</view>
+      </view>
+
+      <view wx:if="{{item.bazi}}" class="record-bazi text-xs text-muted">
+        八字：{{item.bazi}}
+      </view>
+      <view wx:if="{{item.user_id}}" class="text-xs text-muted">
+        用户 ID: {{item.user_id}}
+      </view>
+    </view>
+    <view wx:if="{{loading && list.length > 0}}" class="text-center text-muted text-sm mt-2">加载中...</view>
+    <view wx:elif="{{!hasMore && list.length > 0}}" class="text-center text-muted text-sm mt-2">— 已显示全部 —</view>
+  </view>
+</view>

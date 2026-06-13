@@ -1,0 +1,124 @@
+<wxs module="util">
+// 计算百分比（用于 wxml）
+function pct(val, max) {
+  if (!max || max <= 0) return 0
+  return (val / max) * 100
+}
+
+function fullName(surname, name) {
+  if (!name) return ''
+  if (surname && name.name) return surname + name.name
+  return name.name || ''
+}
+
+function wuxingArr(wx) {
+  if (!wx) return []
+  return wx.split('')
+}
+
+module.exports = { pct: pct, fullName: fullName, wuxingArr: wuxingArr }
+</wxs>
+
+<view class="result-page">
+  <!-- 八字排盘 -->
+  <view class="card">
+    <view class="card-title">📜 八字排盘</view>
+
+    <view wx:if="{{computed.shengxiao || computed.lunar}}" class="info-line">
+      <text wx:if="{{computed.shengxiao}}" class="info-item">
+        <text class="text-muted">生肖：</text>
+        <text class="font-semibold text-primary">属 {{computed.shengxiao}}</text>
+      </text>
+      <text wx:if="{{computed.lunar}}" class="info-item">
+        <text class="text-muted">农历：</text>
+        <text>{{computed.lunar}}</text>
+      </text>
+    </view>
+
+    <!-- 四柱 -->
+    <view class="pillar-grid">
+      <view wx:for="{{fourPillars}}" wx:key="*this" class="pillar-item">
+        <view class="pillar-label">{{PILLAR_LABELS[index]}}</view>
+        <view class="pillar-value">{{item}}</view>
+      </view>
+    </view>
+
+    <!-- 五行分布 -->
+    <view wx:if="{{wuxing}}" class="mt-3">
+      <view class="text-sm text-muted mb-2">五行分布</view>
+      <view wx:for="{{wuxing}}" wx:key="k" class="wuxing-row" data-key="{{k}}">
+        <view class="wuxing-name" style="color: {{WUXING_COLORS[item[0]]}}">{{item[0]}}</view>
+        <view class="wuxing-bar-bg">
+          <view class="wuxing-bar-fg" style="width: {{util.pct(item[1], wuxingMax)}}%; background: {{WUXING_COLORS[item[0]]}}"></view>
+        </view>
+        <view class="wuxing-val text-xs text-muted">{{item[1]}}</view>
+      </view>
+    </view>
+
+    <!-- 喜用神 / 忌神 -->
+    <view wx:if="{{xiyongshen.length > 0}}" class="xiyong-box">
+      <text class="text-success font-semibold">喜用神：</text>
+      <text class="ml-1">{{xiyongshen.join('、')}}</text>
+      <text wx:if="{{avoid.length > 0}}" class="ml-3">
+        <text class="text-danger font-semibold">忌神：</text>
+        <text class="ml-1">{{avoid.join('、')}}</text>
+      </text>
+    </view>
+  </view>
+
+  <!-- 名字列表 -->
+  <view wx:if="{{loading}}" class="empty">
+    <view class="text-muted">AI 正在生成名字...</view>
+  </view>
+  <view wx:elif="{{names.length === 0}}" class="card text-center text-muted">
+    暂无推荐名字，请重试
+  </view>
+  <view wx:else class="names-list">
+    <view
+      wx:for="{{names}}"
+      wx:key="*this"
+      class="name-card"
+      data-idx="{{index}}"
+      bindtap="goDetail"
+    >
+      <view class="name-card-left">
+        <view class="name-fullname">{{util.fullName(form.surname, item)}}</view>
+        <view wx:if="{{item.score}}" class="name-score">评分 {{item.score}}</view>
+        <!-- 五行 chip -->
+        <view wx:if="{{item.wuxing}}" class="wuxing-chips">
+          <view
+            wx:for="{{util.wuxingArr(item.wuxing)}}"
+            wx:key="*this"
+            wx:for-item="wx"
+            class="wx-chip"
+            style="background: {{WUXING_COLORS[wx]}}"
+          >{{wx}}</view>
+        </view>
+      </view>
+      <view class="name-card-right">
+        <view class="name-meaning text-sm">
+          {{item.explanation || item.meaning || item.寓意 || 'AI 正在生成...'}}
+        </view>
+        <view wx:if="{{item.pinyin || item.source}}" class="name-source text-xs text-muted mt-1">
+          <text wx:if="{{item.pinyin}}">{{item.pinyin}}</text>
+          <text wx:if="{{item.pinyin && item.source}}"> · </text>
+          <text wx:if="{{item.source}}">出处：{{item.source}}</text>
+        </view>
+        <view class="mt-2 text-primary text-sm">查看详情 ›</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 会员引导 -->
+  <view wx:if="{{!isMember && names.length > 0}}" class="card vip-card">
+    <view class="text-center">
+      <view class="vip-icon">🔒</view>
+      <view class="text-lg font-semibold mb-1">解锁更多名字</view>
+      <view class="text-sm text-muted mb-3">登录或使用卡密可查看全部 {{totalNames}} 个推荐名字</view>
+      <view class="flex gap-2 justify-center">
+        <button class="btn btn-primary" bindtap="goLogin">立即登录 / 激活卡密</button>
+        <button class="btn btn-outline" bindtap="goRenaming">重新起名</button>
+      </view>
+    </view>
+  </view>
+</view>

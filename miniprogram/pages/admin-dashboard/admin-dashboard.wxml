@@ -1,0 +1,58 @@
+<view class="dashboard-page">
+  <!-- 顶部 -->
+  <view class="admin-header">
+    <view class="admin-info">
+      <view class="admin-name">👋 欢迎，{{adminInfo?.username || '管理员'}}</view>
+      <view class="admin-role text-sm">{{adminInfo?.role || ''}}</view>
+    </view>
+    <view class="admin-actions">
+      <text class="action-btn" bindtap="goHome">🏠</text>
+      <text class="action-btn" bindtap="onLogout">🚪</text>
+    </view>
+  </view>
+
+  <!-- KPI 卡片 -->
+  <view wx:if="{{loading}}" class="empty text-muted">加载中...</view>
+  <view wx:else class="kpi-grid">
+    <view class="kpi-card kpi-blue">
+      <view class="kpi-label">总起名数</view>
+      <view class="kpi-value">{{stats?.totalRecords || stats?.total_records || 0}}</view>
+    </view>
+    <view class="kpi-card kpi-green">
+      <view class="kpi-label">总用户数</view>
+      <view class="kpi-value">{{stats?.totalUsers || stats?.total_users || 0}}</view>
+    </view>
+    <view class="kpi-card kpi-orange">
+      <view class="kpi-label">今日起名</view>
+      <view class="kpi-value">{{stats?.todayRecords || stats?.today_records || 0}}</view>
+    </view>
+    <view class="kpi-card kpi-purple">
+      <view class="kpi-label">激活卡密</view>
+      <view class="kpi-value">{{stats?.activeCodes || stats?.active_codes || 0}}</view>
+    </view>
+  </view>
+
+  <!-- 快捷入口 -->
+  <view class="card">
+    <view class="card-title">📊 数据管理</view>
+    <view class="menu-item" bindtap="goRecords">
+      <text class="menu-icon">📋</text>
+      <text class="menu-text">起名记录</text>
+      <text class="menu-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 30 天趋势 -->
+  <view wx:if="{{stats?.trend && stats.trend.length > 0}}" class="card">
+    <view class="card-title">📈 近 30 天起名趋势</view>
+    <view class="trend-list">
+      <view wx:for="{{stats.trend}}" wx:key="date" class="trend-row">
+        <text class="trend-date text-xs text-muted">{{item.date}}</text>
+        <view class="trend-bar-bg">
+          <view class="trend-bar-fg" style="width: {{item.pct}}%"></view>
+        </view>
+        <text class="trend-count text-sm">{{item.count}}</text>
+      </view>
+    </view>
+  </view>
+</view>

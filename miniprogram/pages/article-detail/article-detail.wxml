@@ -1,0 +1,18 @@
+<view class="detail-page">
+  <view wx:if="{{loading}}" class="empty text-muted">加载中...</view>
+  <view wx:elif="{{!article}}" class="empty text-muted">文章不存在</view>
+  <view wx:else>
+    <view class="article-header">
+      <view class="article-title">{{article.title}}</view>
+      <view class="article-meta text-xs text-muted">
+        {{article.author || '起名网'}} · {{article.published_at || article.created_at}}
+      </view>
+    </view>
+    <view class="article-content">
+      <view wx:if="{{article.summary}}" class="article-summary">
+        {{article.summary}}
+      </view>
+      <view class="article-body">{{article.content || article.body || ''}}</view>
+    </view>
+  </view>
+</view>

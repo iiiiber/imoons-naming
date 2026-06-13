@@ -1,0 +1,40 @@
+<view class="detail-page">
+  <!-- 名字大字 -->
+  <view class="hero">
+    <view class="hero-name">{{fullName}}</view>
+    <view class="hero-pinyin" wx:if="{{pinyin}}">{{pinyin}}</view>
+    <view wx:if="{{wuxingList.length > 0}}" class="hero-wuxing">
+      <view
+        wx:for="{{wuxingList}}"
+        wx:key="*this"
+        class="wx-chip"
+        style="background: {{WUXING_COLORS[item]}}"
+      >{{item}}</view>
+    </view>
+    <view wx:if="{{score}}" class="hero-score">评分 {{score}}</view>
+  </view>
+
+  <!-- 寓意 -->
+  <view wx:if="{{meaning}}" class="card">
+    <view class="card-title">📖 寓意</view>
+    <view class="text-content">{{meaning}}</view>
+  </view>
+
+  <!-- 适合理由 -->
+  <view wx:if="{{suitableReason}}" class="card">
+    <view class="card-title">✨ 为何适合宝宝</view>
+    <view class="text-content">{{suitableReason}}</view>
+  </view>
+
+  <!-- 出处 -->
+  <view wx:if="{{source}}" class="card">
+    <view class="card-title">📜 出处</view>
+    <view class="text-content">{{source}}</view>
+  </view>
+
+  <!-- 操作 -->
+  <view class="action-bar">
+    <button class="btn btn-outline" bindtap="copyName">复制名字</button>
+    <button class="btn btn-primary" bindtap="copyAll">复制全部</button>
+  </view>
+</view>

@@ -1,0 +1,222 @@
+/* app.wxss - 全局样式（对齐 React 端 Tailwind 配色） */
+page {
+  --primary: #3b82f6;
+  --primary-light: #dbeafe;
+  --primary-dark: #1d4ed8;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+  --bg: #f9fafb;
+  --bg-card: #ffffff;
+  --border: #e5e7eb;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+
+  /* 五行色 */
+  --wuxing-mu: #10b981;   /* 木 - 绿 */
+  --wuxing-huo: #ef4444;  /* 火 - 红 */
+  --wuxing-tu: #f59e0b;   /* 土 - 黄 */
+  --wuxing-jin: #6b7280;  /* 金 - 银 */
+  --wuxing-shui: #3b82f6; /* 水 - 蓝 */
+
+  background: var(--bg);
+  color: var(--text-primary);
+  font-size: 28rpx;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  line-height: 1.6;
+}
+
+view, text, button, input, textarea, picker, scroll-view {
+  box-sizing: border-box;
+}
+
+/* ============ 通用容器 ============ */
+.container {
+  padding: 24rpx;
+}
+
+.card {
+  background: var(--bg-card);
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.04);
+}
+
+.card-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 16rpx;
+}
+
+.card-subtitle {
+  font-size: 24rpx;
+  color: var(--text-muted);
+  margin-bottom: 16rpx;
+}
+
+/* ============ 按钮 ============ */
+.btn {
+  display: inline-block;
+  padding: 20rpx 40rpx;
+  border-radius: 12rpx;
+  font-size: 30rpx;
+  text-align: center;
+  line-height: 1.4;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+}
+
+.btn-primary[disabled],
+.btn-primary.btn-disabled {
+  background: #93c5fd;
+  color: #fff;
+}
+
+.btn-outline {
+  background: #fff;
+  color: var(--primary);
+  border: 2rpx solid var(--primary);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+/* ============ 表单 ============ */
+.form-item {
+  margin-bottom: 24rpx;
+}
+
+.form-label {
+  font-size: 26rpx;
+  color: var(--text-secondary);
+  margin-bottom: 8rpx;
+  display: block;
+}
+
+.form-input {
+  width: 100%;
+  padding: 20rpx 24rpx;
+  background: #f9fafb;
+  border: 2rpx solid var(--border);
+  border-radius: 12rpx;
+  font-size: 28rpx;
+}
+
+.form-input:focus {
+  border-color: var(--primary);
+  background: #fff;
+}
+
+.form-textarea {
+  width: 100%;
+  min-height: 160rpx;
+  padding: 20rpx 24rpx;
+  background: #f9fafb;
+  border: 2rpx solid var(--border);
+  border-radius: 12rpx;
+  font-size: 28rpx;
+}
+
+/* ============ 标签 / chip ============ */
+.chip {
+  display: inline-block;
+  padding: 8rpx 20rpx;
+  margin: 6rpx 8rpx 6rpx 0;
+  background: #f3f4f6;
+  color: var(--text-secondary);
+  border-radius: 30rpx;
+  font-size: 24rpx;
+  border: 2rpx solid transparent;
+}
+
+.chip.chip-active {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  border-color: var(--primary);
+}
+
+/* ============ 五行色 ============ */
+.wx-mu  { color: var(--wuxing-mu); }
+.wx-huo { color: var(--wuxing-huo); }
+.wx-tu  { color: var(--wuxing-tu); }
+.wx-jin { color: var(--wuxing-jin); }
+.wx-shui{ color: var(--wuxing-shui); }
+
+.wx-chip-mu  { background: #d1fae5; color: #065f46; }
+.wx-chip-huo { background: #fee2e2; color: #991b1b; }
+.wx-chip-tu  { background: #fef3c7; color: #92400e; }
+.wx-chip-jin { background: #f3f4f6; color: #374151; }
+.wx-chip-shui{ background: #dbeafe; color: #1e3a8a; }
+
+/* ============ 空状态 ============ */
+.empty {
+  padding: 80rpx 0;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.empty-icon {
+  font-size: 80rpx;
+  display: block;
+  margin-bottom: 16rpx;
+}
+
+/* ============ 工具类 ============ */
+.text-center { text-align: center; }
+.text-muted { color: var(--text-muted); }
+.text-secondary { color: var(--text-secondary); }
+.text-primary { color: var(--primary); }
+.text-sm { font-size: 24rpx; }
+.text-xs { font-size: 22rpx; }
+.text-lg { font-size: 32rpx; }
+.text-xl { font-size: 36rpx; }
+.text-2xl { font-size: 44rpx; }
+.font-bold { font-weight: 600; }
+.font-semibold { font-weight: 500; }
+
+.mt-1 { margin-top: 8rpx; }
+.mt-2 { margin-top: 16rpx; }
+.mt-3 { margin-top: 24rpx; }
+.mt-4 { margin-top: 32rpx; }
+.mb-1 { margin-bottom: 8rpx; }
+.mb-2 { margin-bottom: 16rpx; }
+.mb-3 { margin-bottom: 24rpx; }
+.mb-4 { margin-bottom: 32rpx; }
+
+.flex { display: flex; }
+.flex-col { display: flex; flex-direction: column; }
+.flex-1 { flex: 1; }
+.justify-between { justify-content: space-between; }
+.justify-center { justify-content: center; }
+.items-center { align-items: center; }
+.gap-1 { gap: 8rpx; }
+.gap-2 { gap: 16rpx; }
+.gap-3 { gap: 24rpx; }
+
+/* ============ 加载占位 ============ */
+.skeleton {
+  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.4s infinite;
+  border-radius: 8rpx;
+}
+
+@keyframes skeleton-loading {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

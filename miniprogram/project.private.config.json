@@ -1,0 +1,8 @@
+{
+  "miniprogramRoot": "./",
+  "projectname": "imoons-naming",
+  "setting": {
+    "compileHotReLoad": true,
+    "urlCheck": false
+  }
+}

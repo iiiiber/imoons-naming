@@ -1,0 +1,51 @@
+<view class="user-page">
+  <!-- 顶部用户卡 -->
+  <view class="user-header">
+    <block wx:if="{{isLogin && user}}">
+      <view class="avatar">{{user.username ? user.username[0] : 'U'}}</view>
+      <view class="user-info">
+        <view class="user-name">{{user.username || '用户'}}</view>
+        <view class="user-meta">剩余次数：{{user.balance || 0}} 次</view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="avatar">👤</view>
+      <view class="user-info">
+        <view class="user-name">未登录</view>
+        <view class="user-meta">登录后查看更多功能</view>
+      </view>
+      <button class="btn btn-primary" bindtap="goLogin">登录</button>
+    </block>
+  </view>
+
+  <!-- 功能入口 -->
+  <view class="card menu-card">
+    <view class="menu-item" bindtap="goRecords">
+      <text class="menu-icon">📋</text>
+      <text class="menu-text">我的起名记录</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view wx:if="{{!isLogin}}" class="menu-item" bindtap="goCardLogin">
+      <text class="menu-icon">🎫</text>
+      <text class="menu-text">卡密兑换</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="goAdmin">
+      <text class="menu-icon">⚙️</text>
+      <text class="menu-text">后台管理</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view wx:if="{{isLogin}}" class="menu-item" bindtap="onLogout">
+      <text class="menu-icon">🚪</text>
+      <text class="menu-text text-danger">退出登录</text>
+      <text class="menu-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 关于 -->
+  <view class="card">
+    <view class="text-center text-muted text-sm">
+      起名网 v1.0.0 · AI 智能起名
+    </view>
+  </view>
+</view>

@@ -1,0 +1,52 @@
+<view class="home-page">
+  <!-- Banner -->
+  <view class="banner-section">
+    <view class="banner-title">起名网</view>
+    <view class="banner-subtitle">AI 智能起名 · 八字五行 · 会员卡密</view>
+  </view>
+
+  <!-- 快捷入口 -->
+  <view class="card entry-grid">
+    <view
+      class="entry-item"
+      wx:for="{{quickEntries}}"
+      wx:key="id"
+      data-url="{{item.url}}"
+      bindtap="goEntry"
+    >
+      <view class="entry-icon" style="background: {{item.color}}">{{item.icon}}</view>
+      <text class="entry-text">{{item.title}}</text>
+    </view>
+  </view>
+
+  <!-- 起名大按钮 -->
+  <view class="cta-section">
+    <button class="btn btn-primary btn-block" bindtap="goNaming">
+      ✨ 立即智能起名
+    </button>
+  </view>
+
+  <!-- 推荐文章 -->
+  <view class="card">
+    <view class="card-title">📖 起名知识</view>
+    <view wx:if="{{loading}}" class="empty">
+      <text class="text-muted text-sm">加载中...</text>
+    </view>
+    <view wx:elif="{{articles.length === 0}}" class="empty">
+      <text class="text-muted">暂无文章</text>
+    </view>
+    <view
+      wx:else
+      wx:for="{{articles}}"
+      wx:key="id"
+      class="article-item"
+      data-id="{{item.id}}"
+      bindtap="goArticle"
+    >
+      <view class="article-title text-lg font-semibold">{{item.title}}</view>
+      <view class="article-meta text-sm text-muted">
+        {{item.author || '起名网'}} · {{item.published_at}}
+      </view>
+    </view>
+  </view>
+</view>

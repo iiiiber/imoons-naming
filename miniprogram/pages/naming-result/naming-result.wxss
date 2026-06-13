@@ -1,0 +1,162 @@
+.result-page {
+  padding-bottom: 40rpx;
+}
+
+.info-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  margin-bottom: 16rpx;
+  font-size: 26rpx;
+}
+
+.info-item {
+  display: inline-block;
+}
+
+.pillar-grid {
+  display: flex;
+  gap: 16rpx;
+  margin: 16rpx 0;
+}
+
+.pillar-item {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx 8rpx;
+  background: #f3f4f6;
+  border-radius: 12rpx;
+}
+
+.pillar-label {
+  font-size: 22rpx;
+  color: var(--text-muted);
+  margin-bottom: 6rpx;
+}
+
+.pillar-value {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-family: "STKaiti", "KaiTi", serif;
+}
+
+.wuxing-row {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  margin-bottom: 8rpx;
+}
+
+.wuxing-name {
+  width: 30rpx;
+  text-align: center;
+  font-weight: 600;
+  font-size: 26rpx;
+}
+
+.wuxing-bar-bg {
+  flex: 1;
+  height: 12rpx;
+  background: #f3f4f6;
+  border-radius: 6rpx;
+  overflow: hidden;
+}
+
+.wuxing-bar-fg {
+  height: 100%;
+  border-radius: 6rpx;
+  transition: width 0.3s;
+}
+
+.wuxing-val {
+  width: 40rpx;
+  text-align: right;
+}
+
+.xiyong-box {
+  margin-top: 20rpx;
+  padding: 16rpx 20rpx;
+  background: #f0fdf4;
+  border-radius: 8rpx;
+  font-size: 26rpx;
+}
+
+/* ====== 名字卡片 ====== */
+.names-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+  padding: 0 24rpx;
+}
+
+.name-card {
+  display: flex;
+  gap: 20rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  box-shadow: 0 1rpx 4rpx rgba(0,0,0,0.04);
+}
+
+.name-card-left {
+  flex-shrink: 0;
+  width: 200rpx;
+}
+
+.name-fullname {
+  font-size: 56rpx;
+  font-weight: 700;
+  font-family: "STKaiti", "KaiTi", "STSong", serif;
+  color: var(--text-primary);
+  letter-spacing: 4rpx;
+  line-height: 1.1;
+}
+
+.name-score {
+  font-size: 22rpx;
+  color: var(--primary);
+  margin-top: 4rpx;
+}
+
+.wuxing-chips {
+  display: flex;
+  gap: 6rpx;
+  margin-top: 8rpx;
+}
+
+.wx-chip {
+  min-width: 28rpx;
+  padding: 2rpx 8rpx;
+  border-radius: 6rpx;
+  color: #fff;
+  font-size: 20rpx;
+  text-align: center;
+  font-weight: 500;
+}
+
+.name-card-right {
+  flex: 1;
+  min-width: 0;
+}
+
+.name-meaning {
+  color: var(--text-primary);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ====== 会员引导 ====== */
+.vip-card {
+  margin: 24rpx;
+  background: linear-gradient(135deg, #eff6ff 0%, #fef3c7 100%);
+  border: 2rpx solid #93c5fd;
+}
+
+.vip-icon {
+  font-size: 64rpx;
+  margin-bottom: 8rpx;
+}

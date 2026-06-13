@@ -1,0 +1,26 @@
+<view class="login-page">
+  <view class="login-header">
+    <view class="login-title">🎫 卡密兑换</view>
+    <view class="login-subtitle text-muted">输入卡密即可登录使用</view>
+  </view>
+
+  <view class="card">
+    <view class="form-item">
+      <view class="form-label">卡密</view>
+      <input
+        class="form-input card-input"
+        placeholder="请输入卡密（区分大小写）"
+        value="{{cardCode}}"
+        bindinput="onInput"
+      />
+    </view>
+    <button class="btn btn-primary btn-block" bindtap="onSubmit" disabled="{{submitting}}">
+      {{submitting ? '兑换中...' : '立即兑换'}}
+    </button>
+  </view>
+
+  <view class="text-center mt-3">
+    <text class="text-muted text-sm">已有账号？</text>
+    <text class="text-primary text-sm" bindtap="goAccountLogin">账号密码登录</text>
+  </view>
+</view>

@@ -1,0 +1,37 @@
+<view class="login-page">
+  <view class="login-header">
+    <view class="login-title">⚙️ 后台管理</view>
+    <view class="login-subtitle text-muted">管理员登录</view>
+  </view>
+
+  <view class="card">
+    <view class="form-item">
+      <view class="form-label">管理员账号</view>
+      <input
+        class="form-input"
+        placeholder="请输入管理员账号"
+        value="{{form.username}}"
+        data-field="username"
+        bindinput="onInput"
+      />
+    </view>
+    <view class="form-item">
+      <view class="form-label">密码</view>
+      <input
+        class="form-input"
+        password
+        placeholder="请输入密码"
+        value="{{form.password}}"
+        data-field="password"
+        bindinput="onInput"
+      />
+    </view>
+    <button class="btn btn-primary btn-block" bindtap="onSubmit" disabled="{{submitting}}">
+      {{submitting ? '登录中...' : '登录后台'}}
+    </button>
+  </view>
+
+  <view class="text-center text-muted text-sm mt-3">
+    默认账号: admin / admin123
+  </view>
+</view>

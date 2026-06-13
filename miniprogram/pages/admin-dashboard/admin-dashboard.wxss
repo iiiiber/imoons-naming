@@ -1,0 +1,127 @@
+.dashboard-page {
+  padding-bottom: 40rpx;
+}
+
+.admin-header {
+  background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+  color: #fff;
+  padding: 32rpx 24rpx 24rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-name {
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-bottom: 4rpx;
+}
+
+.admin-role {
+  opacity: 0.8;
+}
+
+.admin-actions {
+  display: flex;
+  gap: 16rpx;
+}
+
+.action-btn {
+  font-size: 36rpx;
+  padding: 8rpx 12rpx;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16rpx;
+  padding: 24rpx;
+}
+
+.kpi-card {
+  border-radius: 16rpx;
+  padding: 24rpx;
+  color: #fff;
+}
+
+.kpi-blue { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+.kpi-green { background: linear-gradient(135deg, #10b981, #047857); }
+.kpi-orange { background: linear-gradient(135deg, #f59e0b, #d97706); }
+.kpi-purple { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+
+.kpi-label {
+  font-size: 24rpx;
+  opacity: 0.9;
+  margin-bottom: 8rpx;
+}
+
+.kpi-value {
+  font-size: 56rpx;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 0;
+  border-bottom: 2rpx solid var(--border);
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-icon {
+  font-size: 36rpx;
+  margin-right: 16rpx;
+}
+
+.menu-text {
+  flex: 1;
+  font-size: 30rpx;
+}
+
+.menu-arrow {
+  color: var(--text-muted);
+  font-size: 32rpx;
+}
+
+.trend-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+  max-height: 600rpx;
+  overflow-y: auto;
+}
+
+.trend-row {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.trend-date {
+  width: 140rpx;
+  flex-shrink: 0;
+}
+
+.trend-bar-bg {
+  flex: 1;
+  height: 16rpx;
+  background: #f3f4f6;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+
+.trend-bar-fg {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  border-radius: 8rpx;
+}
+
+.trend-count {
+  width: 60rpx;
+  text-align: right;
+  font-weight: 500;
+}

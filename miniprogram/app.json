@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/naming/naming",
+    "pages/naming-result/naming-result",
+    "pages/name-detail/name-detail",
+    "pages/articles/articles",
+    "pages/article-detail/article-detail",
+    "pages/user/user",
+    "pages/user-records/user-records",
+    "pages/login-account/login-account",
+    "pages/login-card/login-card",
+    "pages/admin-login/admin-login",
+    "pages/admin-dashboard/admin-dashboard",
+    "pages/admin-records/admin-records"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#3b82f6",
+    "navigationBarTitleText": "起名网",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f9fafb"
+  },
+  "tabBar": {
+    "color": "#9ca3af",
+    "selectedColor": "#3b82f6",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/naming/naming",
+        "text": "起名"
+      },
+      {
+        "pagePath": "pages/articles/articles",
+        "text": "文章"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

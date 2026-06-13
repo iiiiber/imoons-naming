@@ -1,0 +1,130 @@
+<view class="naming-page">
+  <!-- 标题 -->
+  <view class="page-header">
+    <view class="page-title">八字起名</view>
+    <view class="page-subtitle text-muted">输入宝宝信息，AI 智能推荐好名字</view>
+  </view>
+
+  <!-- 姓氏 -->
+  <view class="card">
+    <view class="form-label">姓氏</view>
+    <input
+      class="form-input"
+      placeholder="请输入宝宝姓氏"
+      maxlength="2"
+      value="{{form.surname}}"
+      data-field="surname"
+      bindinput="onInput"
+    />
+  </view>
+
+  <!-- 性别 -->
+  <view class="card">
+    <view class="form-label">性别</view>
+    <view class="radio-grid">
+      <view
+        class="radio-item {{form.gender === 'male' ? 'radio-active-male' : ''}}"
+        data-field="gender"
+        data-value="male"
+        bindtap="onRadio"
+      >男 ♂</view>
+      <view
+        class="radio-item {{form.gender === 'female' ? 'radio-active-female' : ''}}"
+        data-field="gender"
+        data-value="female"
+        bindtap="onRadio"
+      >女 ♀</view>
+    </view>
+  </view>
+
+  <!-- 历法 -->
+  <view class="card">
+    <view class="form-label">历法</view>
+    <view class="radio-grid">
+      <view
+        class="radio-item {{form.calendar === 'solar' ? 'radio-active' : ''}}"
+        data-field="calendar"
+        data-value="solar"
+        bindtap="onRadio"
+      >公历（阳历）</view>
+      <view
+        class="radio-item {{form.calendar === 'lunar' ? 'radio-active' : ''}}"
+        data-field="calendar"
+        data-value="lunar"
+        bindtap="onRadio"
+      >农历（阴历）</view>
+    </view>
+    <view wx:if="{{form.calendar === 'lunar'}}" class="text-xs text-muted mt-1">
+      ⚠️ 农历日期将自动转换为公历用于八字计算（闰月请用公历）
+    </view>
+  </view>
+
+  <!-- 出生日期 / 时辰 -->
+  <view class="card">
+    <view class="form-row">
+      <view class="form-col">
+        <view class="form-label">📅 出生日期</view>
+        <picker mode="date" value="{{form.birthDate}}" bindchange="onDateChange">
+          <view class="form-input picker-input">{{form.birthDate || '请选择'}}</view>
+        </picker>
+      </view>
+      <view class="form-col">
+        <view class="form-label">🕐 出生时辰</view>
+        <picker mode="selector" range="{{SHICHEN}}" range-key="label" value="{{birthTimeIndex}}" bindchange="onTimeChange">
+          <view class="form-input picker-input">{{SHICHEN[birthTimeIndex].label}}</view>
+        </picker>
+      </view>
+    </view>
+  </view>
+  <!-- 名字字数 -->
+  <view class="card">
+    <view class="form-label">名字字数</view>
+    <view class="radio-grid">
+      <view
+        class="radio-item {{form.nameLength === '2' ? 'radio-active' : ''}}"
+        data-field="nameLength"
+        data-value="2"
+        bindtap="onRadio"
+      >单字名（名 1 个字）</view>
+      <view
+        class="radio-item {{form.nameLength === '3' ? 'radio-active' : ''}}"
+        data-field="nameLength"
+        data-value="3"
+        bindtap="onRadio"
+      >双字名（名 2 个字）</view>
+    </view>
+  </view>
+
+  <!-- 起名偏好 -->
+  <view class="card">
+    <view class="form-row-between">
+      <view class="form-label">起名偏好</view>
+      <text class="text-xs text-muted">选填，可多选</text>
+    </view>
+    <view class="tag-list">
+      <view
+        wx:for="{{prefTags}}"
+        wx:key="name"
+        class="tag-item {{item.selected ? 'tag-active' : ''}}"
+        data-idx="{{index}}"
+        bindtap="togglePref"
+      >{{item.name}}</view>
+    </view>
+    <textarea
+      class="form-textarea"
+      placeholder='自定义偏好（选填）：如"希望名字带水字旁"、"姓李想避开同班同学名"等'
+      maxlength="200"
+      value="{{form.customPref}}"
+      data-field="customPref"
+      bindinput="onInput"
+    />
+    <view class="text-xs text-muted mt-1">选中标签与自定义内容会一并传给 AI</view>
+  </view>
+
+  <!-- 提交 -->
+  <view class="submit-section">
+    <button class="btn btn-primary btn-block" bindtap="onSubmit" disabled="{{submitting}}">
+      ✨ {{submitting ? 'AI 起名中...' : '开始起名'}}
+    </button>
+  </view>
+</view>
