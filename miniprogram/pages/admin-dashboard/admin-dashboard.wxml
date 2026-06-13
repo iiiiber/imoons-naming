@@ -2,8 +2,8 @@
   <!-- 顶部 -->
   <view class="admin-header">
     <view class="admin-info">
-      <view class="admin-name">👋 欢迎，{{adminInfo?.username || '管理员'}}</view>
-      <view class="admin-role text-sm">{{adminInfo?.role || ''}}</view>
+      <view class="admin-name">👋 欢迎，{{adminInfo && adminInfo.username ? adminInfo.username : '管理员'}}</view>
+      <view class="admin-role text-sm">{{adminInfo && adminInfo.role ? adminInfo.role : ''}}</view>
     </view>
     <view class="admin-actions">
       <text class="action-btn" bindtap="goHome">🏠</text>
@@ -16,19 +16,19 @@
   <view wx:else class="kpi-grid">
     <view class="kpi-card kpi-blue">
       <view class="kpi-label">总起名数</view>
-      <view class="kpi-value">{{stats?.totalRecords || stats?.total_records || 0}}</view>
+      <view class="kpi-value">{{stats && stats.totalRecords ? stats.totalRecords : (stats && stats.total_records ? stats.total_records : 0)}}</view>
     </view>
     <view class="kpi-card kpi-green">
       <view class="kpi-label">总用户数</view>
-      <view class="kpi-value">{{stats?.totalUsers || stats?.total_users || 0}}</view>
+      <view class="kpi-value">{{stats && stats.totalUsers ? stats.totalUsers : (stats && stats.total_users ? stats.total_users : 0)}}</view>
     </view>
     <view class="kpi-card kpi-orange">
       <view class="kpi-label">今日起名</view>
-      <view class="kpi-value">{{stats?.todayRecords || stats?.today_records || 0}}</view>
+      <view class="kpi-value">{{stats && stats.todayRecords ? stats.todayRecords : (stats && stats.today_records ? stats.today_records : 0)}}</view>
     </view>
     <view class="kpi-card kpi-purple">
       <view class="kpi-label">激活卡密</view>
-      <view class="kpi-value">{{stats?.activeCodes || stats?.active_codes || 0}}</view>
+      <view class="kpi-value">{{stats && stats.activeCodes ? stats.activeCodes : (stats && stats.active_codes ? stats.active_codes : 0)}}</view>
     </view>
   </view>
 
@@ -43,7 +43,7 @@
   </view>
 
   <!-- 30 天趋势 -->
-  <view wx:if="{{stats?.trend && stats.trend.length > 0}}" class="card">
+  <view wx:if="{{stats && stats.trend && stats.trend.length > 0}}" class="card">
     <view class="card-title">📈 近 30 天起名趋势</view>
     <view class="trend-list">
       <view wx:for="{{stats.trend}}" wx:key="date" class="trend-row">
