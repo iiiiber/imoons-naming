@@ -59,8 +59,8 @@ SQL
 
 ```bash
 cd /var/www
-sudo git clone https://github.com/iiiiber/naming-app-fullstack.git
-cd naming-app-fullstack
+sudo git clone https://github.com/iiiiber/imoons-naming.git
+cd imoons-naming
 sudo mysql -u name_imoons_cn -p name_imoons_cn < database/init.sql
 ```
 
@@ -84,7 +84,7 @@ sudo cp -r dist/* ../app/
 ### 6. 配置环境变量
 
 ```bash
-cd /var/www/naming-app-fullstack
+cd /var/www/imoons-naming
 sudo cp .env.example .env
 sudo vim .env
 # 填入真实 DB 密码、AI API key、微信 AppID/Secret
@@ -108,9 +108,9 @@ $config = [
 ### 8. 设置文件权限
 
 ```bash
-sudo chown -R www-data:www-data /var/www/naming-app-fullstack
-sudo chmod -R 755 /var/www/naming-app-fullstack
-sudo chmod -R 775 /var/www/naming-app-fullstack/backend-php/lib  # db.php 写入配置
+sudo chown -R www-data:www-data /var/www/imoons-naming
+sudo chmod -R 755 /var/www/imoons-naming
+sudo chmod -R 775 /var/www/imoons-naming/backend-php/lib  # db.php 写入配置
 ```
 
 ### 9. 配置 Nginx
@@ -130,7 +130,7 @@ server {
     ssl_certificate     /etc/letsencrypt/live/your-domain.com/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/your-domain.com/privkey.pem;
 
-    root /var/www/naming-app-fullstack;
+    root /var/www/imoons-naming;
     index index.php index.html;
 
     # 根 URL 跳 SPA
@@ -145,7 +145,7 @@ server {
 
     # SPA 静态资源
     location ^~ /app/assets/ {
-        alias /var/www/naming-app-fullstack/app/assets/;
+        alias /var/www/imoons-naming/app/assets/;
         try_files $uri =404;
     }
     location ^~ /app/ {
@@ -210,7 +210,7 @@ curl -I https://your-domain.com/app/admin/login
 ## 🔧 升级
 
 ```bash
-cd /var/www/naming-app-fullstack
+cd /var/www/imoons-naming
 git pull
 
 # 后端升级

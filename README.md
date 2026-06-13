@@ -90,8 +90,8 @@ naming-app/
 ### 1. 克隆项目
 
 ```bash
-git clone https://github.com/iiiiber/naming-app-fullstack.git
-cd naming-app-fullstack
+git clone https://github.com/iiiiber/imoons-naming.git
+cd imoons-naming
 ```
 
 ### 2. 初始化数据库
@@ -144,14 +144,14 @@ cp -r dist/* ../app/
 server {
     listen 443 ssl http2;
     server_name your-domain.com;
-    root /var/www/naming-app-fullstack;
+    root /var/www/imoons-naming;
     index index.php index.html;
 
     # SSL 证书...
 
     # SPA 静态资源
     location ^~ /app/assets/ {
-        alias /var/www/naming-app-fullstack/app/assets/;
+        alias /var/www/imoons-naming/app/assets/;
     }
     location ^~ /app/ {
         try_files $uri $uri/ /app/index.html;

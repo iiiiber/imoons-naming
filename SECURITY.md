@@ -15,7 +15,7 @@
 
 📧 **Email**：iiiiber@github.com （加密邮件推荐用 GPG key `4F1A 2B3C ...`）
 
-或在 GitHub 上用 [Private Vulnerability Reporting](https://github.com/iiiiber/naming-app-fullstack/security/advisories/new)。
+或在 GitHub 上用 [Private Vulnerability Reporting](https://github.com/iiiiber/imoons-naming/security/advisories/new)。
 
 **请提供**：
 - 漏洞描述
