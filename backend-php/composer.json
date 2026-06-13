@@ -1,0 +1,21 @@
+{
+    "name": "iiiiber/naming-app-php",
+    "description": "起名网 PHP 后端 - 6tail 排盘 + AI 起名 + 会员卡密",
+    "type": "project",
+    "require": {
+        "php": ">=8.0",
+        "ext-pdo": "*",
+        "ext-mysqli": "*",
+        "ext-curl": "*",
+        "ext-mbstring": "*",
+        "6tail/lunar-php": "^1.0"
+    },
+    "autoload": {
+        "files": ["lib/db.php"]
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "minimum-stability": "stable"
+}

@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-ink-50 text-ink-800 font-sans antialiased;
+    @apply min-h-screen;
+  }
+  * {
+    @apply box-border;
+  }
+  /* 移动端滚动优化 */
+  html, body {
+    overscroll-behavior-y: none;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply bg-primary-500 text-white hover:bg-primary-600 shadow-sm hover:shadow;
+  }
+  .btn-outline {
+    @apply border border-ink-300 text-ink-700 hover:bg-ink-100;
+  }
+  .btn-ghost {
+    @apply text-ink-700 hover:bg-ink-100;
+  }
+  .input {
+    @apply w-full px-3 py-2.5 rounded-lg border border-ink-200 bg-white text-ink-800 placeholder-ink-400 focus:outline-none focus:border-primary-400 focus:ring-2 focus:ring-primary-100 transition;
+  }
+  .card {
+    @apply bg-white rounded-xl shadow-card p-4 sm:p-6;
+  }
+  .label {
+    @apply block text-sm font-medium text-ink-700 mb-1.5;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  /* 隐藏 scrollbar 但保留滚动 */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  /* 安全区适配 */
+  .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+  .pt-safe { padding-top: env(safe-area-inset-top); }
+}
