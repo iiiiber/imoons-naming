@@ -7,6 +7,8 @@
 [![React](https://img.shields.io/badge/React-18-61DAFB.svg)](https://react.dev)
 [![Vite](https://img.shields.io/badge/Vite-5-646CFF.svg)](https://vitejs.dev)
 
+> ⚠️ **CI 状态**：本仓库因首次推送时的 GitHub PAT 缺少 `workflow` scope，CI workflow 文件未在 main 分支。如需启用：在 `.github/workflows/` 写好 `ci.yml`（已提供模板）后，从 [Actions 页面](https://github.com/iiiiber/imoons-naming/actions) 手动启用即可，参考 [`.github/README.md`](.github/README.md)。
+
 ## ✨ 功能特性
 
 - 🧠 **AI 智能起名**：基于八字喜用神 + LLM（MiniMax / DeepSeek）生成 10 个寓意美好、符合命理的名字
