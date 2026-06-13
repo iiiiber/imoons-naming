@@ -14,10 +14,17 @@ export default function AdminLogin() {
   const [params] = useSearchParams()
   const redirect = params.get('redirect') || '/admin'
 
+  const [checking, setChecking] = useState(true)
   useEffect(() => {
-    // 已登录直接跳
-    if (isAuthed()) nav(redirect, { replace: true })
-  }, [isAuthed, nav, redirect])
+    // 用 check() 异步验证 token 有效性（避免本地有 token 但服务端已失效导致的闪屏）
+    let cancelled = false
+    useAdminStore.getState().check().then((ok) => {
+      if (cancelled) return
+      setChecking(false)
+      if (ok) nav(redirect, { replace: true })
+    })
+    return () => { cancelled = true }
+  }, [nav, redirect])
 
   const submit = async (e) => {
     e.preventDefault()
@@ -44,6 +51,13 @@ export default function AdminLogin() {
           <h1 className="text-2xl font-serif font-bold text-ink-900">管理员登录</h1>
           <p className="mt-2 text-sm text-ink-500">起名网 · 后台管理系统</p>
         </div>
+
+        {checking ? (
+          <div className="bg-white rounded-2xl shadow-sm border border-ink-100 p-12 text-center">
+            <div className="inline-block w-8 h-8 border-2 border-ink-200 border-t-primary-500 rounded-full animate-spin"></div>
+            <p className="mt-3 text-sm text-ink-500">正在验证登录状态...</p>
+          </div>
+        ) : (
 
         <form onSubmit={submit} className="bg-white rounded-2xl shadow-sm border border-ink-100 p-6 space-y-4">
           <div className="relative">
@@ -83,6 +97,7 @@ export default function AdminLogin() {
             仅限管理员使用 · 登录信息将被记录
           </p>
         </form>
+        )}
       </div>
     </div>
   )
