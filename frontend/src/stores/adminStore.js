@@ -27,5 +27,21 @@ export const useAdminStore = create((set, get) => ({
     set({ admin: null, token: null, error: null })
   },
 
+  // 检查 token 是否有效：调 stats API 验证，401/失败则清掉 token
+  // 返回 Promise<boolean>
+  check: async () => {
+    const token = get().token
+    if (!token) return false
+    try {
+      await adminApi.stats()
+      return true  // 200 OK → token 有效
+    } catch (err) {
+      // 401 或其他错误 → 清掉 token
+      setAdminToken(null)
+      set({ admin: null, token: null, error: null })
+      return false
+    }
+  },
+
   isAuthed: () => !!get().token,
 }))
